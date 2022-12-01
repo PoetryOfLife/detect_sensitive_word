@@ -134,3 +134,18 @@ func (st *SensitiveTrie) Match(text string) (sensitiveWords []string) {
 	}
 	return sensitiveWords
 }
+
+func (st *SensitiveTrie) SensitiveNums() int {
+	return nums(st.root)
+}
+
+func nums(node *TrieNode) int {
+	var num int
+	if node.End {
+		num++
+	}
+	for _, trieNode := range node.childMap {
+		num += nums(trieNode)
+	}
+	return num
+}
