@@ -1,8 +1,8 @@
-package main
+package DFA
 
 import "sync"
 
-//SensitiveTrie 敏感词前缀树
+// SensitiveTrie 敏感词前缀树
 type SensitiveTrie struct {
 	mutex sync.RWMutex
 	root  *TrieNode
@@ -56,7 +56,7 @@ func (st *SensitiveTrie) AddSensitiveWord(sensitiveWord string) {
 	trieNode.Data = sensitiveWord
 }
 
-//AddSensitiveWords 批量添加敏感字
+// AddSensitiveWords 批量添加敏感字
 func (st *SensitiveTrie) AddSensitiveWords(sensitiveWords []string) {
 	st.mutex.Lock()
 	defer st.mutex.Unlock()
@@ -71,7 +71,7 @@ func (st *SensitiveTrie) AddSensitiveWords(sensitiveWords []string) {
 	}
 }
 
-//RefreshSensitiveTrie 刷新敏感字段数，获取最新的敏感字段
+// RefreshSensitiveTrie 刷新敏感字段数，获取最新的敏感字段
 func (st *SensitiveTrie) RefreshSensitiveTrie(sensitiveWords []string) {
 	st.mutex.Lock()
 	defer st.mutex.Unlock()
